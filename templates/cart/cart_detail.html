@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% load static %}
+
+
+<div class="fashion_section">
+    <div id="main_slider" class="carousel slide" data-ride="carousel">
+       <div class="carousel-inner">
+          <div class="carousel-item active">
+             <div class="container">
+                <br>
+                <h1 class="fashion_taital" style="top: 20px;color: #5a1313;">{{user.first_name}}'s Cart</h1>
+                <br>
+                <div class="fashion_section_2">
+                   <div class="row">
+                       <!-- Loop through the subcategories -->
+                       {% for i in cart_items %}
+                       <div class=" col-lg-3 col-sm-3">
+                          <div class="box_main" style = 'height: 450px'>
+                             <div class="tshirt_img" style = 'height: 400px'>
+                                <h3 class="shirt_text">{{ i.product_name }}</h3>
+                                <img src="{{ i.image.url }}" alt="{{ i.product_name}}">
+                                <h4> Quantity = {{ i.quantity }}</h4>
+                                <h4> Price = {{ i.price }}</h4>
+                                <h4> Total = ₹{{ i.total_price }}</h4>
+                                <br>
+                                <form method="post" action="{% url 'remove_from_cart' i.id %}">
+                                  {% csrf_token %}
+                                  <button style="text-align: center; background-color: orangered; color: white; padding: 10px 20px; border: none; border-radius: 5px;" type="submit" class="btn btn-primary"> Remove </button>
+                                </form>
+                              </div>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div>
+                     <br>
+                     <br>
+                     <h2 class="fashion_taital" style="top: 20px;color: #5a1313;">Gross Amount = ₹{{total}}</h2>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<!-- Full-Width Banner Section Start -->
+<div class="banner_section layout_padding">
+    <!-- Remove container or use container-fluid -->
+    <div id="my_slider" class="carousel slide" data-ride="carousel">
+       <div class="carousel-inner">
+          {% for i in sliders %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+             <div class="d-block w-100"><a href="{{ i.link }}"><img src= "{{ i.image }}" alt="Slide {{ forloop.counter }}"  style="width: 100%; height: auto;"></a>
+             </div>
+          </div>
+          {% endfor %}
+       </div>
+ 
+       <!-- Carousel Controls -->
+       <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+          <i class="fa fa-angle-left"></i>
+       </a>
+       <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+          <i class="fa fa-angle-right"></i>
+       </a>
+    </div>
+ </div>
+ <!-- Full-Width Banner Section End -->
+ 
+ {% endblock content %}

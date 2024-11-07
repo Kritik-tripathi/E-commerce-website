@@ -1,0 +1,114 @@
+{% load static %}
+
+<!-- banner bg main start -->
+<div class="banner_bg_main" style = 'background-color: #5a1313;'>
+   <!-- header top section start -->
+   <div class="container" style = 'height:10px;'>
+      <div class="header_section_top">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="custom_menu">
+                  <ul>
+                     <li><a href="#">My Account</a></li>
+                     <li><a href="#">My Wishlist</a></li>
+                     <li><a href="/about">About This Project</a></li>
+                     {% if user.is_authenticated %}
+                     <li><a href="">{{user.first_name}}</a></li>
+                     <li><a href="{% url "logout" %}">Logout</a></li>
+                     {% else %}
+                     <li><a href="{% url "register" %}">Register</a></li>
+                     <li><a href="{% url "login" %}">Login</a></li>   
+                     {% endif %}
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   
+   <!-- header top section start -->
+   <!-- logo section start -->
+   <div class="logo_section">
+      <div class="container">
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="logo" ><a href="/"><h1 style = "font-size: 32pt; font-weight: bold; color: White;">ShopKart</h1></a></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- logo section end -->
+
+
+   <!-- header section start -->
+   <div class="header_section">
+      <div class="container">
+         <div class="containt_main">
+            <div id="mySidenav" class="sidenav">
+               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+               <br>
+               <br>
+               <br>
+               <a href="">Notifications</a>
+               <a href="/admin/">Settings</a>
+               <a href="">Become A Seller</a>
+            </div>
+            <span class="toggle_icon" onclick="openNav()"><img src= "{% static "images/toggle-icon.png" %}"></span>
+
+            <!-- DROPDOWN STARTS -->
+            <div class="dropdown">
+               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
+               </button>
+               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{% url 'category_products' slug='electronics' %}">Electronics</a>
+                  <a class="dropdown-item" href="{% url 'category_products' slug='fashion' %}">Fashion</a>
+                  <a class="dropdown-item" href="{% url 'category_products' slug='music' %}">Music</a>
+                  {% comment %} {% for i in main_categorys %}
+                  <a class="dropdown-item" href="{% url 'category_products' i.slug %}">
+                     {{ i.name }}
+                  </a>
+                  {% endfor %} {% endcomment %}
+               </div>
+            </div>
+            <!-- DROPDOWN ENDS -->
+            <div class="main">
+               <div class="input-group">
+                  <form method="get" action="{% url 'search' %}">
+                     <input type="text" style="width: 528px; height:38px;" name="query" placeholder="Search for products...">
+                     <button class="btn btn-secondary" type="submit" style="background-color: #f26522; border-color:#f26522 ">
+                        <i class="fa fa-search"></i>
+                     </button>
+                  </form>
+               </div>
+            </div>
+
+            <div class="header_box">
+               <div class="lang_box ">
+                  <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                  <img src= "{% static "images/flag-uk.png" %}" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu ">
+                     <a href="#" class="dropdown-item">
+                     <img src= "{% static "images/flag-france.png" %}" class="mr-2" alt="flag">
+                     French
+                     </a>
+                  </div>
+               </div>
+
+               <div class="login_menu">
+                  <ul>
+                     <li><a href="{% url "cart_detail" %}">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="padding_10">Cart</span></a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- header section end -->
+</div>
+
+<!-- banner bg main end -->

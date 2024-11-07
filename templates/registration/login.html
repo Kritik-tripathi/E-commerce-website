@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="login-container">
+        <h2 style='color:#5a1313' >Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+            <button style="text-align: center; background-color: red; color: white; padding: 10px 20px; border: none; border-radius: 5px;" type="submit" class="btn">Login</button>
+            <a href="{% url "password_reset" %}"> Forgot password? </a>
+        </form>
+        
+        <div style = 'text-align: center; color:red' >
+            <p style = 'color:black'>Don't have account??</p>
+            <a class= 'btn' href="{% url "register" %}">Register here</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
